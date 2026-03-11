@@ -43,7 +43,7 @@ def clearScreen():
     os.system('cls' if os.name == 'nt' else 'clear')
 # ==========================================================
 
-# Garante que o diretório raiz está no sys.path
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 def autenticacao(username, password):
@@ -64,18 +64,18 @@ def autenticacao(username, password):
 def main():
     msg = pyfiglet.figlet_format("LPD - PYTHON")
     print(msg)
-    print("**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**") 
-    print(f"|{bcolors.OKBLUE}            INSTITUTO POLITÉCNICO DE BEJA{bcolors.ENDC}            |")
-    print(f"|{bcolors.OKBLUE}            M E S I  2 0 2 5 - 2 0 2 6  {bcolors.ENDC}              |")
-    print(f"|{bcolors.OKBLUE}   Projeto de Linguagem de Programação Dinâmica{bcolors.ENDC}         |")
-    print("|---------------------------------------------------|")
-    print(f"|{bcolors.BOLD} A P L I C A Ç Ã O   D E   S E G U R A N Ç A {bcolors.ENDC}    |")     
-    print("|---------------------------------------------------|")
-    print("|        Aluno: Ze Manuel Gomes n 22276           |")
-    print("**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**") 
+    print("**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-****-****-****-****-****-****-**") 
+    print(f"|{bcolors.OKBLUE}         INSTITUTO POLITÉCNICO DE BEJA{bcolors.ENDC}            |")
+    print(f"|{bcolors.OKBLUE}          M E S I  2 0 2 5 - 2 0 2 6  {bcolors.ENDC}            |")
+    print(f"|{bcolors.OKBLUE}   Projeto de Linguagem de Programação Dinâmica{bcolors.ENDC}   |")
+    print("|---------------------------------------------------------------------------------|")
+    print(f"|{bcolors.BOLD}     A P L I C A Ç Ã O   D E   S E G U R A N Ç A {bcolors.ENDC}   |")     
+    print("|-------------------------------------------------------------------------------  |")
+    print("|                            Aluno: Ze Manuel Gomes n 22276                       |")
+    print("**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-****-**-**-**-**-**-**-**-**-**-") 
 
     try:
-        # Pula verificação de admin temporariamente
+       
         loginOuRegistar()
     except KeyboardInterrupt:
         print("\nPrograma interrompido abrupta !!!!")
@@ -98,7 +98,7 @@ def loginOuRegistar():
 def login(): 
     print("\n-------------------- << LOGIN >> --------------------")
     username = input("Nome utilizador: ")
-    password = stdiomask.getpass()  # Obtendo a senha de forma segura
+    password = stdiomask.getpass()  
     
     # Chamando a função de autenticação
     user = autenticacao(username, password)
@@ -382,7 +382,7 @@ def gerarRelatorioLogServicosPDF(cabecalho, dados):
         y -= 25
 
     pdf.save()
-    print(f"📄 Relatório guardado em: {caminho_pdf}")
+    print(f" Relatório guardado em: {caminho_pdf}")
 
 
 def analiseLogsAuth(user):
@@ -394,8 +394,8 @@ def analiseLogsAuth(user):
     dados = []
     res = 0
     import re
-    re_ip = re.compile(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}")  # Usando raw string
-    print("Processando, Por favor aguarde...")  # ✅ Agora está corretamente alinhado
+    re_ip = re.compile(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}") 
+    print("Processando, Por favor aguarde...")  
   
     for linha in linhas:
         if 'Failed password' in linha:
@@ -508,7 +508,7 @@ def gerarFicheiroCSV(ficheiro, cabecalho, dados):
         for dado in dados:
             writer.writerow(dado)
 
-    print(f"📄 Ficheiro CSV guardado em: {caminho_arquivo}")
+    print(f" Ficheiro CSV guardado em: {caminho_arquivo}")
 
 
 def GeoIpInfo(ip):
@@ -535,7 +535,6 @@ def backup(user):
 
         with zipfile.ZipFile(caminho_backup, "w", zipfile.ZIP_DEFLATED) as zipf:
             for pasta, subpastas, ficheiros in os.walk(projeto_dir):
-                # ❌ IGNORA a pasta backup (evita loop infinito)
                 if os.path.abspath(backup_dir) in os.path.abspath(pasta):
                     continue
 
@@ -551,7 +550,7 @@ def backup(user):
         registarLogs("sucesso", user[1], "backup", "Backup do projeto")
 
     except Exception as e:
-        print(f"\n{bcolors.FAIL}❌ Erro ao criar backup: {e}{bcolors.ENDC}")
+        print(f"\n{bcolors.FAIL} Erro ao criar backup: {e}{bcolors.ENDC}")
         registarLogs("erro", user[1], "backup", str(e))
 
     input("\nPressione ENTER para continuar...")
@@ -567,7 +566,7 @@ def listarMsgChat(user):
         ficheiro = input("Introduza o ficheiro da chave privada: ").strip()
         privKey = rsa.lerChavePEM(ficheiro)
         if not privKey:
-            print("❌ Chave privada inválida")
+            print(" Chave privada inválida")
             input("ENTER para voltar...")
             return
     else:
@@ -659,32 +658,30 @@ def pathApp(ficheiro, flag=0):
     return path
 
 def udp_flood_attack(user):
-    """
-    Executa ataque UDP Flood a partir do menu
-    """
+   
     print("\n" + "="*50)
-    print("🚀 UDP FLOOD ATTACK - FERRAMENTA DE SEGURANÇA")
+    print(" UDP FLOOD ATTACK - FERRAMENTA DE SEGURANÇA")
     print("="*50)
     
     # Input do usuário
-    target_ip = input("🎯 IP do alvo: ").strip()
+    target_ip = input(" IP do alvo: ").strip()
     
     try:
-        target_port = int(input("🔢 Porta do alvo (ex: 80, 443): ").strip())
-        duration = int(input("⏱️  Duração (segundos): ").strip())
-        packet_size = input("📦 Tamanho do pacote [1024]: ").strip()
+        target_port = int(input(" Porta do alvo (ex: 80, 443): ").strip())
+        duration = int(input("  Duração (segundos): ").strip())
+        packet_size = input(" Tamanho do pacote [1024]: ").strip()
         packet_size = int(packet_size) if packet_size else 1024
     except ValueError:
-        print("❌ Erro: Valores inválidos!")
+        print(" Erro: Valores inválidos!")
         return
     
     print("\n" + "="*50)
-    print("⚠️  AVISO: Use apenas para testes em ambientes controlados!")
+    print("  AVISO: Use apenas para testes em ambientes controlados!")
     print("="*50)
     
-    confirm = input("\n🔴 Confirmar ataque? (s/N): ").strip().lower()
+    confirm = input("\n Confirmar ataque? (s/N): ").strip().lower()
     if confirm != "s":
-        print("❌ Ataque cancelado!")
+        print(" Ataque cancelado!")
         return
     
     # Importar e executar o ataque
@@ -693,41 +690,39 @@ def udp_flood_attack(user):
         udp_flood(target_ip, target_port, duration, packet_size)
         registarLogs("sucesso", user[1], "udp_flood", f"Ataque UDP para {target_ip}:{target_port}")
     except ImportError as e:
-        print(f"❌ Erro: Não foi possível importar módulo UDP Flood: {e}")
+        print(f" Erro: Não foi possível importar módulo UDP Flood: {e}")
     except Exception as e:
-        print(f"❌ Erro durante o ataque: {e}")
+        print(f" Erro durante o ataque: {e}")
         registarLogs("erro", user[1], "udp_flood", str(e))
 
 def syn_flood_attack(user):
-    """
-    Executa ataque SYN Flood a partir do menu
-    """
+    
     print("\n" + "="*50)
-    print("🚀 SYN FLOOD ATTACK - FERRAMENTA DE SEGURANÇA")
+    print(" SYN FLOOD ATTACK - FERRAMENTA DE SEGURANÇA")
     print("="*50)
-    print("⚠️  REQUER PRIVILÉGIOS DE ROOT/ADMINISTRADOR!")
+    print("  REQUER PRIVILÉGIOS DE ROOT/ADMINISTRADOR!")
     print("="*50)
     
     # Input do usuário
-    target_ip = input("🎯 IP do alvo: ").strip()
+    target_ip = input(" IP do alvo: ").strip()
     
     try:
-        target_port = int(input("🔢 Porta do alvo (ex: 80, 443): ").strip())
-        duration = int(input("⏱️  Duração (segundos): ").strip())
-        threads = input("🧵 Threads [5]: ").strip()
+        target_port = int(input(" Porta do alvo (ex: 80, 443): ").strip())
+        duration = int(input("  Duração (segundos): ").strip())
+        threads = input(" Threads [5]: ").strip()
         threads = int(threads) if threads else 5
     except ValueError:
-        print("❌ Erro: Valores inválidos!")
+        print(" Erro: Valores inválidos!")
         return
     
     print("\n" + "="*50)
-    print("⚠️  AVISO: Use apenas para testes em ambientes controlados!")
-    print("⚠️  Este ataque requer privilégios de root!")
+    print("  AVISO: Use apenas para testes em ambientes controlados!")
+    print("  Este ataque requer privilégios de root!")
     print("="*50)
     
-    confirm = input("\n🔴 Confirmar ataque? (s/N): ").strip().lower()
+    confirm = input("\n Confirmar ataque? (s/N): ").strip().lower()
     if confirm != 's':
-        print("❌ Ataque cancelado!")
+        print(" Ataque cancelado!")
         return
     
     # Importar e executar o ataque
@@ -736,9 +731,9 @@ def syn_flood_attack(user):
         syn_flood(target_ip, target_port, duration, threads)
         registarLogs("sucesso", user[1], "syn_flood", f"Ataque SYN para {target_ip}:{target_port}")
     except ImportError as e:
-        print(f"❌ Erro: Não foi possível importar módulo SYN Flood: {e}")
+        print(f" Erro: Não foi possível importar módulo SYN Flood: {e}")
     except Exception as e:
-        print(f"❌ Erro durante o ataque: {e}")
+        print(f" Erro durante o ataque: {e}")
         registarLogs("erro", user[1], "syn_flood", str(e))
 
 # ========== FUNÇÕES PORT KNOCKING ==========
@@ -747,7 +742,7 @@ def menu_port_knocking(user):
     
     while True:
         print("\n" + "="*60)
-        print("🔐 PORT KNOCKING CLIENT")
+        print(" PORT KNOCKING CLIENT")
         print("="*60)
         print("[1] Executar Port Knocking")
         print("[2] Configurar Firewall (Requer Sudo)")
@@ -768,25 +763,25 @@ def menu_port_knocking(user):
         elif opcao == "4":
             definir_sequencia(knocker)
         elif opcao == "5":
-            print(f"\n🔢 Sequência atual: {knocker.sequence}")
-            print(f"🎯 Porta SSH: {knocker.ssh_port}")
-            print(f"⏱️  Duração abertura: {knocker.open_duration} segundos")
+            print(f"\n Sequência atual: {knocker.sequence}")
+            print(f" Porta SSH: {knocker.ssh_port}")
+            print(f"  Duração abertura: {knocker.open_duration} segundos")
         elif opcao == "0":
             break
         else:
-            print(f"\n{bcolors.FAIL}❌ Opção inválida!{bcolors.ENDC}")
+            print(f"\n{bcolors.FAIL} Opção inválida!{bcolors.ENDC}")
         
         input(f"\n{bcolors.OKBLUE}Pressione Enter para continuar...{bcolors.ENDC}")
 
 def executar_knocking(user, knocker):
     print("\n" + "="*50)
-    print("🎯 EXECUTAR PORT KNOCKING")
+    print(" EXECUTAR PORT KNOCKING")
     print("="*50)
     
     target_ip = input("IP do servidor alvo: ").strip()
     
     if not target_ip:
-        print(f"{bcolors.FAIL}❌ IP é obrigatório!{bcolors.ENDC}")
+        print(f"{bcolors.FAIL} IP é obrigatório!{bcolors.ENDC}")
         return
     
     usar_personalizada = input("Usar sequência personalizada? (s/N): ").lower().strip()
@@ -798,74 +793,74 @@ def executar_knocking(user, knocker):
             try:
                 sequence = [int(p.strip()) for p in seq_input.split(",")]
                 if len(sequence) < 2:
-                    print(f"{bcolors.FAIL}❌ Precisa de pelo menos 2 portas!{bcolors.ENDC}")
+                    print(f"{bcolors.FAIL} Precisa de pelo menos 2 portas!{bcolors.ENDC}")
                     return
             except ValueError:
-                print(f"{bcolors.FAIL}❌ Formato inválido! Use números.{bcolors.ENDC}")
+                print(f"{bcolors.FAIL} Formato inválido! Use números.{bcolors.ENDC}")
                 return
     
-    print(f"\n{bcolors.OKBLUE}🚀 Executando Port Knocking...{bcolors.ENDC}")
+    print(f"\n{bcolors.OKBLUE} Executando Port Knocking...{bcolors.ENDC}")
     
     sucesso = knocker.execute_knock(target_ip, sequence)
     
     if sucesso:
-        print(f"\n{bcolors.OKGREEN}✅ Port Knocking realizado com sucesso!{bcolors.ENDC}")
-        print(f"{bcolors.BOLD}📋 Próximos passos:{bcolors.ENDC}")
+        print(f"\n{bcolors.OKGREEN} Port Knocking realizado com sucesso!{bcolors.ENDC}")
+        print(f"{bcolors.BOLD} Próximos passos:{bcolors.ENDC}")
         print(f"   1. No servidor {target_ip}, configure o firewall")
         print(f"   2. Teste a conexão SSH: ssh usuario@{target_ip}")
         
         registarLogs("sucesso", user[1], "port_knocking", 
                     f"Knocking para {target_ip} - sequência: {knocker.sequence}")
     else:
-        print(f"\n{bcolors.FAIL}❌ Port Knocking falhou!{bcolors.ENDC}")
+        print(f"\n{bcolors.FAIL} Port Knocking falhou!{bcolors.ENDC}")
         registarLogs("erro", user[1], "port_knocking", 
                     f"Falha no knocking para {target_ip}")
 
 def configurar_firewall_knocking(user, knocker):
     print("\n" + "="*60)
-    print("⚠️  CONFIGURAÇÃO DE FIREWALL")
+    print("  CONFIGURAÇÃO DE FIREWALL")
     print("="*60)
     print(f"{bcolors.WARNING}ATENÇÃO: Esta operação requer privilégios de root/sudo{bcolors.ENDC}")
     
-    confirmar = input(f"\n{bcolors.BOLD}🔴 Confirmar configuração? (s/N): {bcolors.ENDC}").lower().strip()
+    confirmar = input(f"\n{bcolors.BOLD} Confirmar configuração? (s/N): {bcolors.ENDC}").lower().strip()
     
     if confirmar != "s":
-        print(f"{bcolors.OKBLUE}❌ Operação cancelada!{bcolors.ENDC}")
+        print(f"{bcolors.OKBLUE} Operação cancelada!{bcolors.ENDC}")
         return
     
-    print(f"\n{bcolors.OKBLUE}🛡️  Configurando firewall...{bcolors.ENDC}")
+    print(f"\n{bcolors.OKBLUE}  Configurando firewall...{bcolors.ENDC}")
     
     if knocker.configure_firewall():
-        print(f"\n{bcolors.OKGREEN}✅ Firewall configurado com sucesso!{bcolors.ENDC}")
+        print(f"\n{bcolors.OKGREEN} Firewall configurado com sucesso!{bcolors.ENDC}")
         registarLogs("sucesso", user[1], "firewall_config", "Configuração iptables para port knocking")
     else:
-        print(f"\n{bcolors.FAIL}❌ Erro ao configurar firewall{bcolors.ENDC}")
+        print(f"\n{bcolors.FAIL} Erro ao configurar firewall{bcolors.ENDC}")
 
 def testar_ssh(user, knocker):
     print("\n" + "="*50)
-    print("🔍 TESTAR CONEXÃO SSH")
+    print(" TESTAR CONEXÃO SSH")
     print("="*50)
     
     target_ip = input("IP do servidor: ").strip()
     username = input("Utilizador SSH [kali]: ").strip() or "kali"
     
     if not target_ip:
-        print(f"{bcolors.FAIL}❌ IP é obrigatório!{bcolors.ENDC}")
+        print(f"{bcolors.FAIL} IP é obrigatório!{bcolors.ENDC}")
         return
     
-    print(f"\n{bcolors.OKBLUE}🔍 Testando conexão SSH para {username}@{target_ip}...{bcolors.ENDC}")
+    print(f"\n{bcolors.OKBLUE} Testando conexão SSH para {username}@{target_ip}...{bcolors.ENDC}")
 
     
     if knocker.test_ssh_connection(target_ip, username):
-        print(f"\n{bcolors.OKGREEN}✅ Conexão SSH disponível!{bcolors.ENDC}")
+        print(f"\n{bcolors.OKGREEN} Conexão SSH disponível!{bcolors.ENDC}")
         registarLogs("sucesso", user[1], "ssh_test", 
                     f"Conexão SSH OK para {username}@{target_ip}")
     else:
-        print(f"\n{bcolors.FAIL}❌ Conexão SSH não disponível{bcolors.ENDC}")
+        print(f"\n{bcolors.FAIL} Conexão SSH não disponível{bcolors.ENDC}")
 
 def definir_sequencia(knocker):
     print("\n" + "="*50)
-    print("🔧 DEFINIR NOVA SEQUÊNCIA")
+    print(" DEFINIR NOVA SEQUÊNCIA")
     print("="*50)
     
     print(f"Sequência atual: {knocker.sequence}")
@@ -873,19 +868,19 @@ def definir_sequencia(knocker):
     nova_seq = input("\nNova sequência (ex: 1000,2000,3000): ").strip()
     
     if not nova_seq:
-        print(f"{bcolors.OKBLUE}⚠️  Sequência mantida{bcolors.ENDC}")
+        print(f"{bcolors.OKBLUE}  Sequência mantida{bcolors.ENDC}")
         return
     
     try:
         sequencia = [int(p.strip()) for p in nova_seq.split(",")]
         
         if knocker.set_sequence(sequencia):
-            print(f"\n{bcolors.OKGREEN}✅ Sequência alterada para: {knocker.sequence}{bcolors.ENDC}")
+            print(f"\n{bcolors.OKGREEN} Sequência alterada para: {knocker.sequence}{bcolors.ENDC}")
         else:
-            print(f"\n{bcolors.FAIL}❌ Erro ao definir sequência{bcolors.ENDC}")
+            print(f"\n{bcolors.FAIL} Erro ao definir sequência{bcolors.ENDC}")
             
     except ValueError:
-        print(f"{bcolors.FAIL}❌ Formato inválido! Use números separados por vírgula.{bcolors.ENDC}")
+        print(f"{bcolors.FAIL} Formato inválido! Use números separados por vírgula.{bcolors.ENDC}")
 # ========== FIM FUNÇÕES PORT KNOCKING ==========
 
 def password_manager_menu(user):
@@ -895,19 +890,14 @@ def password_manager_menu(user):
     """
     from password_manager.manager import password_manager_menu as pm_menu
 
-    # chama diretamente o menu real do password manager
     pm_menu(user)
 
 
 def menuPrincipal(user):
-    """
-    Menu Principal da aplicação
-    Controla corretamente o fluxo entre menus
-    NÃO apaga resultados antes do utilizador os ver
-    """
+
 
     while True:
-        clearScreen()   # limpa apenas quando vai MOSTRAR o menu
+        clearScreen()   
 
         tipoUser = user[4]
         sufx = "(admin)" if tipoUser == 'admin' else ""
@@ -978,7 +968,7 @@ def menuPrincipal(user):
 
         # --------- OPÇÃO INVÁLIDA ---------
         else:
-            print(f"\n{bcolors.FAIL}❌ Opção inválida!{bcolors.ENDC}")
+            print(f"\n{bcolors.FAIL} Opção inválida!{bcolors.ENDC}")
             input("Pressione Enter para continuar...")
 
 def ligacoes(user):
@@ -1008,9 +998,9 @@ def voltarMenuOuLogout(user):
     else:
         logout(user[1])
 
-# Funções que estão faltando (adicione se necessário)
+
 def gerarRelatorioLigacaoPDF(nomeFicheiro, titulo, dados):
-    # Implemente esta função se necessário
+   
     pass
 
 if __name__ == "__main__":
