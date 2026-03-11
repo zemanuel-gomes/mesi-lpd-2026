@@ -24,8 +24,6 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter, landscape
 import csv
 import matplotlib.pyplot as plt
-#from chat.servidor import *
-#from chat.cliente import *
 import chat.servidor as servidor
 import chat.cliente as cliente
 import base64
@@ -270,7 +268,7 @@ def analiseLogServicos(user):
         else:
             f = open(pathApp(ficheiro, 1), "r")
     except FileNotFoundError:
-        print(f"{bcolors.FAIL}❌ Ficheiro não encontrado{bcolors.ENDC}")
+        print(f"{bcolors.FAIL} Ficheiro não encontrado{bcolors.ENDC}")
         return
 
     print("Ficheiro aberto com sucesso!")
@@ -343,7 +341,7 @@ def analiseLogServicos(user):
 
             caminho_img = os.path.join(RESULTADOS_DIR, "grafico_paises_origem.png")
             plt.savefig(caminho_img)
-            print(f"📊 Gráfico guardado em: {caminho_img}")
+            print(f" Gráfico guardado em: {caminho_img}")
 
             plt.show()
             registarLogs("sucesso", user[1], "grafico", "Grafico IP por pais")
