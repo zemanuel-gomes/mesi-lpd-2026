@@ -62,20 +62,20 @@ def autenticacao(username, password):
         return 0  # Usuário não encontrado
 
 def main():
-    msg = pyfiglet.figlet_format("LPD - PYTHON")
+    msg = pyfiglet.figlet_format("LPD-PYTHON")
     print(msg)
-    print("**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-****-****-****-****-****-****-**") 
-    print(f"|{bcolors.OKBLUE}         INSTITUTO POLITÉCNICO DE BEJA{bcolors.ENDC}            |")
-    print(f"|{bcolors.OKBLUE}          M E S I  2 0 2 5 - 2 0 2 6  {bcolors.ENDC}            |")
-    print(f"|{bcolors.OKBLUE}   Projeto de Linguagem de Programação Dinâmica{bcolors.ENDC}   |")
-    print("|---------------------------------------------------------------------------------|")
-    print(f"|{bcolors.BOLD}     A P L I C A Ç Ã O   D E   S E G U R A N Ç A {bcolors.ENDC}   |")     
-    print("|-------------------------------------------------------------------------------  |")
-    print("|                            Aluno: Ze Manuel Gomes n 22276                       |")
-    print("**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-****-**-**-**-**-**-**-**-**-**-") 
+    print("**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-                               ") 
+    print(f"|{bcolors.OKBLUE}          INSTITUTO POLITÉCNICO DE BEJA{bcolors.ENDC}             |")
+    print(f"|{bcolors.OKBLUE}            M E S I  2 0 2 5 - 2 0 2 6  {bcolors.ENDC}            |")
+    print(f"|{bcolors.OKBLUE}   Projeto de Linguagem de Programação Dinâmica{bcolors.ENDC}     |")
+    print("|----------------------------------------------------|")
+    print(f"|{bcolors.BOLD} A P L I C A Ç Ã O   D E   S E G U R A N Ç A {bcolors.ENDC}|    ")     
+    print("|----------------------------------------------------|")
+    print("|        Aluno: Ze Manuel Gomes n 22276              |")
+    print("**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-") 
 
     try:
-       
+        # Pula verificação de admin temporariamente
         loginOuRegistar()
     except KeyboardInterrupt:
         print("\nPrograma interrompido abrupta !!!!")
@@ -98,7 +98,7 @@ def loginOuRegistar():
 def login(): 
     print("\n-------------------- << LOGIN >> --------------------")
     username = input("Nome utilizador: ")
-    password = stdiomask.getpass()  
+    password = stdiomask.getpass()  # Obtendo a senha de forma segura
     
     # Chamando a função de autenticação
     user = autenticacao(username, password)
@@ -353,7 +353,7 @@ def analiseLogServicos(user):
 def gerarRelatorioLogServicosPDF(cabecalho, dados):
     data = datetime.now()
 
-    caminho_pdf = os.path.join(RESULTADOS_DIR, "servicos.pdf")
+    caminho_pdf = os.path.join(RESULTADOS_DIR, "Serviços.pdf")
     pdf = canvas.Canvas(caminho_pdf)
     pdf.setPageSize(landscape(letter))
     pdf.setLineWidth(.3)
@@ -394,7 +394,7 @@ def analiseLogsAuth(user):
     dados = []
     res = 0
     import re
-    re_ip = re.compile(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}") 
+    re_ip = re.compile(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}")  
     print("Processando, Por favor aguarde...")  
   
     for linha in linhas:
@@ -464,7 +464,7 @@ def analiseLogsAuth(user):
 
 def gerarRelatorioLoginFalhadoPDF(cabecalho, dados):
     data = datetime.now()
-    caminho_relatorio = "/home/kali/MESI_LPD_SecurityApp/relatorios/loginfalhados.pdf"
+    caminho_relatorio = "/home/kali/mesi_lpd_Securityapp/relatorios/loginfalhados.pdf"
     
     # Verifica se o diretório 'relatorios' existe, senão cria
     if not os.path.exists(os.path.dirname(caminho_relatorio)):
@@ -491,7 +491,7 @@ def gerarRelatorioLoginFalhadoPDF(cabecalho, dados):
     for celulas in dados:
         x = 20
         for c in celulas:
-            pdf.drawString(x, y, str(c))  # Garante que o valor é string
+            pdf.drawString(x, y, str(c))  
             x += 100 
         y -= 25
     
@@ -650,7 +650,7 @@ def registarLogs(status, username, acao, descricao):
 
 
 def pathApp(ficheiro, flag=0):
-    pathParte = "Desktop/LPD/lpdpython/aplicacao/"+ficheiro;
+    pathParte = "Desktop/home/kali/mesi_lpd_securityapp/"+ficheiro;
     if flag == 0:
         path = os.path.join(os.path.join(os.path.expanduser('~')),pathParte)
     else:
@@ -658,7 +658,7 @@ def pathApp(ficheiro, flag=0):
     return path
 
 def udp_flood_attack(user):
-   
+    
     print("\n" + "="*50)
     print(" UDP FLOOD ATTACK - FERRAMENTA DE SEGURANÇA")
     print("="*50)
@@ -848,7 +848,7 @@ def testar_ssh(user, knocker):
         print(f"{bcolors.FAIL} IP é obrigatório!{bcolors.ENDC}")
         return
     
-    print(f"\n{bcolors.OKBLUE} Testando conexão SSH para {username}@{target_ip}...{bcolors.ENDC}")
+    print(f"\n{bcolors.OKBLUE}🔍 Testando conexão SSH para {username}@{target_ip}...{bcolors.ENDC}")
 
     
     if knocker.test_ssh_connection(target_ip, username):
@@ -860,7 +860,7 @@ def testar_ssh(user, knocker):
 
 def definir_sequencia(knocker):
     print("\n" + "="*50)
-    print(" DEFINIR NOVA SEQUÊNCIA")
+    print("🔧 DEFINIR NOVA SEQUÊNCIA")
     print("="*50)
     
     print(f"Sequência atual: {knocker.sequence}")
@@ -884,17 +884,13 @@ def definir_sequencia(knocker):
 # ========== FIM FUNÇÕES PORT KNOCKING ==========
 
 def password_manager_menu(user):
-    """
-    Menu do Password Manager com 2FA
-    NÃO usa try/except para não esconder erros
-    """
     from password_manager.manager import password_manager_menu as pm_menu
 
     pm_menu(user)
 
 
 def menuPrincipal(user):
-
+   
 
     while True:
         clearScreen()   
@@ -982,7 +978,7 @@ def ligacoes(user):
             dados.append(res)
         i+=1
     registarLogs("sucesso",user[1],"list","listagem de ligações")    
-    op = input('\nGerar relatorio PDF [y/n]:')
+    op = input('\nGerar relatorio PDF [y/n]:').lower() 
     if op == 'y':
         print('Processando, aguarde por favor...')
         sleep(1)
@@ -998,9 +994,9 @@ def voltarMenuOuLogout(user):
     else:
         logout(user[1])
 
-
+# Funções que estão faltando (adicione se necessário)
 def gerarRelatorioLigacaoPDF(nomeFicheiro, titulo, dados):
-   
+    # Implemente esta função se necessário
     pass
 
 if __name__ == "__main__":
